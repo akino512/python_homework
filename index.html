@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>python tool</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./global.css">
+</head>
+
+<body>
+  <div id="loading" style="position: absolute;top: 0;display: flex;
+  height:100%;width:100%;background: #00000060;z-index: 1;">
+    <h2 style="margin:auto;color:white">
+      loading...
+    </h2>
+  </div>
+
+</body>
+
+<script>
+  const STATIC = {
+    MIN_DATE: '0001-01-01',
+    MAX_DATE: '9999-12-31'
+  }
+
+  const TOOL = {
+    addScript(src) {
+      const script = document.createElement("script")
+      script.src = src
+      script.async = false
+      document.body.append(script)
+    },
+    financial(x) {
+      return Number.parseFloat(x / 100).toFixed(2);
+    },
+  }
+
+  const PARAM = {
+    get urlParams() {
+      return new URLSearchParams(window.location.search);
+    },
+    getParam(key) {
+      const params = this.urlParams
+      return this.urlParams.get(key)
+    },
+    setParam(key, value) {
+      const params = this.urlParams
+      params.set(key, value)
+      window.history.replaceState(null, null, '?' + params.toString());
+    },
+    clearParams() {
+      window.history.replaceState(null, null, '?');
+    },
+  }
+
+  const GLOBAL = {
+    reload(toolid) {
+      PARAM.clearParams();
+      if (toolid) PARAM.setParam("tool", toolid)
+      location.reload()
+    },
+    tool: null,
+    sections: [],
+    get current() {
+      const secNum = parseInt(PARAM.getParam("section"))
+      return GLOBAL.sections[secNum - 1] == undefined ? 1 : secNum
+    },
+    set current(value) {
+      PARAM.setParam("section", value)
+      for (const wat of this.currentWatchers) { wat() }
+    },
+    currentWatchers: [],
+  }
+</script>
+<script src="./compoent/init.js"></script>
+<script src="./tool/init.js"></script>
+<script>
+  if (GLOBAL.tool) {
+    GLOBAL.tool.read()
+    window.onload = () => {
+      const tool = MTool()
+      document.body.appendChild(tool)
+      GLOBAL.current = GLOBAL.current
+      loading.remove()
+    }
+  }
+</script>
+
+</html>

@@ -1,0 +1,110 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
+    font-weight: normal;
+}
+
+:root {
+    --green1: #009966;
+    --green2: #009900;
+    --red: #CC3333;
+    --orange: #FF9933;
+    --blue: #003399;
+    --yellow: #FFFF33;
+
+    --gray1: #a9a9a9;
+    --gray2: #808080;
+    --gray3: #666666;
+}
+
+html {
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+#app {
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+}
+
+a,
+a:visited {
+    color: rgb(0, 80, 160);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.not-allowed {
+    background-color: grey !important;
+    color: gainsboro !important;
+    cursor: not-allowed !important;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+/* pie-chart */
+.pie-chart {
+    position: relative;
+    width: 520px;
+    height: 400px;
+    margin: 0;
+    outline: 1px solid #ccc;
+}
+
+.pie-chart h2 {
+    position: absolute;
+    margin: 1rem;
+}
+
+.pie-chart cite {
+    position: absolute;
+    bottom: 0;
+    font-size: 80%;
+    padding: 1rem;
+    color: gray;
+}
+
+.pie-chart figcaption {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    font-size: smaller;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 0;
+    /* text-align: center; */
+}
+
+.pie-chart span:after {
+    display: inline-block;
+    content: "";
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: 0.4em;
+    height: 0.8em;
+    border-radius: 0.2em;
+    background: currentColor;
+}

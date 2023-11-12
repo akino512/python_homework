@@ -8,7 +8,7 @@ GLOBAL.sections.push({
                 method: "POST",
             })
         }
-        const bShutdown = MButton('关机')
+        const bShutdown = MButton('关闭服务')
         bShutdown.onclick = shutdown
         element.appendChild(bShutdown)
         return element
